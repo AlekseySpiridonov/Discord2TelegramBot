@@ -18,6 +18,8 @@
         <version.junit>4.12</version.junit>
         <version.slf4j>1.7.30</version.slf4j>
         <version.logback>1.0.13</version.logback>
+        <version.docker-maven-plugin>1.4.13</version.docker-maven-plugin>
+        <project.build.skip-docker>true</project.build.skip-docker>
     </properties>
 
     <build>
@@ -68,6 +70,27 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${version.docker-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>docker</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>${project.build.skip-docker}</skip>
+                    <repository>alekseyspiridonov/discordbot</repository>
+                    <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>

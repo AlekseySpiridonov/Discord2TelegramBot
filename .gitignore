@@ -4,3 +4,4 @@ target/*
 .DS_Store
 *.jar
 src/main/resources/system.properties
+src/main/resources/chats.properties

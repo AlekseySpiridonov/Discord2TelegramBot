@@ -1,7 +1,11 @@
 # Telegram
 telegram_token=""
 telegram_botname=""
-telegram_chatId=""
+# Moved to separate file
+#telegram_chatId=""
 # Discord
 discord_token=""
-discord_chatId=""
+# Moved to separate file
+#discord_chatId=""
+# Setup chats for synchronisation
+chats_for_sync=src/main/resources/chats.properties.example

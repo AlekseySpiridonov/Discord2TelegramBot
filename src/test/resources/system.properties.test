@@ -1,0 +1,9 @@
+# Telegram
+telegram_token="test"
+telegram_botname="testbot"
+
+# Discord
+discord_token="test"
+
+# Setup chats for synchronisation
+chats_for_sync=src/test/resources/chats.properties.test

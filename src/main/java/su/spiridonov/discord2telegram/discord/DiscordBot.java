@@ -5,16 +5,9 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.TextChannel;
-import discord4j.core.object.entity.User;
-import discord4j.core.object.util.Snowflake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import reactor.core.publisher.Mono;
 import su.spiridonov.discord2telegram.discord.helper.DiscordMessageHelper;
-import su.spiridonov.discord2telegram.telegram.helper.TelegramMessageHelper;
-
-import java.io.IOException;
 
 public class DiscordBot {
 

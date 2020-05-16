@@ -51,24 +51,26 @@ public class BotRunner {
         logger.debug("Config was loaded.");
     }
 
-    public static Long findDiscordChatByTelegram(Long tgChatId) {
+    public static String findDiscordChatByTelegram(Long tgChatId) {
         for (Object k : chatsForSynchronisation.keySet()) {
             if (chatsForSynchronisation.getProperty(k.toString()).equals(tgChatId.toString())) {
-                return Long.parseLong(k.toString());
+                return k.toString();
+            } else if (chatsForSynchronisation.getProperty(k.toString()).equals("!" + tgChatId.toString())) {
+                return k.toString();
             }
         }
         return null;
     }
 
-    public static Long findTelegramChatByDiscordId(Long dsChatId) {
+    public static String findTelegramChatByDiscordId(Long dsChatId) {
         String tgChatId = null;
         try {
             tgChatId = chatsForSynchronisation.getProperty(dsChatId.toString());
+            if (tgChatId == null)
+                tgChatId = chatsForSynchronisation.getProperty("!" + dsChatId.toString());
+            return tgChatId;
         } catch (Exception e) {
             logger.error(e.toString());
-        }
-        if (tgChatId != null) {
-            return Long.parseLong(tgChatId);
         }
         return null;
     }

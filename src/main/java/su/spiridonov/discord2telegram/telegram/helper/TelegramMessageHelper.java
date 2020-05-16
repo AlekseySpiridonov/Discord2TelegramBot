@@ -3,6 +3,7 @@ package su.spiridonov.discord2telegram.telegram.helper;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import su.spiridonov.discord2telegram.BotRunner;
 import su.spiridonov.discord2telegram.discord.helper.DiscordMessageHelper;
 import su.spiridonov.discord2telegram.telegram.TelegramBotConfig;
 
@@ -11,7 +12,9 @@ public class TelegramMessageHelper extends TelegramBotConfig {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-            DiscordMessageHelper.sendMessage(update);
+            String dsChatId = BotRunner.findDiscordChatByTelegram(update.getMessage().getChatId());
+            if (!dsChatId.contains("!"))
+                DiscordMessageHelper.sendMessage(update, Long.valueOf(dsChatId));
         }
     }
 

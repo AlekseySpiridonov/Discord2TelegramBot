@@ -18,11 +18,10 @@ public class DiscordMessageHelper {
         channel.createMessage(msg).subscribe();
     }
 
-    public static void sendMessage(Update tgMsg) {
+    public static void sendMessage(Update tgMsg, Long dsChatId) {
         String msg = MessagePlaceHolders.FROM_TELEGRAM_PREFIX +
                 tgMsg.getMessage().getFrom().getUserName() + ": " +
                 tgMsg.getMessage().getText();
-        Long dsChatId = BotRunner.findDiscordChatByTelegram(tgMsg.getMessage().getChatId());
         if (dsChatId != null)
             sendMessage(DiscordBot.getClient(), dsChatId, msg);
     }
@@ -30,9 +29,9 @@ public class DiscordMessageHelper {
     public static void onUpdateReceived(Message message) {
         TelegramMessageHelper t = new TelegramMessageHelper();
 
-        Long tgChatId = BotRunner.findTelegramChatByDiscordId(message.getChannelId().asLong());
-        if (tgChatId != null)
-            t.sendMessage(tgChatId, MessagePlaceHolders.FROM_DISCORD_PREFIX +
+        String tgChatId = BotRunner.findTelegramChatByDiscordId(message.getChannelId().asLong());
+        if (tgChatId != null || !tgChatId.contains("!"))
+            t.sendMessage(Long.valueOf(tgChatId), MessagePlaceHolders.FROM_DISCORD_PREFIX +
                     message.getAuthor().get().getUsername() + ": " + message.getContent().get());
     }
 

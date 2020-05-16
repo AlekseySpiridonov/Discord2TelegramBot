@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class DiscordBotConfig {
     static String TOKEN;
-    static List<Long> DISCORD_CHAT_IDs;
+    static List<String> DISCORD_CHAT_IDs;
     static DiscordBotConfig discordBotConfig;
 
     public DiscordBotConfig() {
@@ -19,7 +19,7 @@ public class DiscordBotConfig {
         DISCORD_CHAT_IDs = new ArrayList<>();
         for (Object k : chatIdsProperties.keySet()) {
             String dsChatId = k.toString();
-            DISCORD_CHAT_IDs.add(Long.parseLong(dsChatId));
+            DISCORD_CHAT_IDs.add(dsChatId);
         }
     }
 
@@ -27,7 +27,7 @@ public class DiscordBotConfig {
         return TOKEN;
     }
 
-    public static List<Long> getDiscordChatIds() {
+    public static List<String> getDiscordChatIds() {
         return DISCORD_CHAT_IDs;
     }
 

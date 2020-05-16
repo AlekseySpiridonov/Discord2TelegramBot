@@ -10,7 +10,7 @@ import java.util.Properties;
 public abstract class TelegramBotConfig extends TelegramLongPollingBot {
     private String BOT_USERNAME;
     private String BOT_TOKEN;
-    private static List<Long> CHAT_IDs;
+    private static List<String> CHAT_IDs;
 
     @Override
     public String getBotUsername() {
@@ -22,7 +22,7 @@ public abstract class TelegramBotConfig extends TelegramLongPollingBot {
         return BOT_TOKEN;
     }
 
-    public static List<Long> getCHAT_IDs() {
+    public static List<String> getCHAT_IDs() {
         return CHAT_IDs;
     }
 
@@ -35,7 +35,7 @@ public abstract class TelegramBotConfig extends TelegramLongPollingBot {
         CHAT_IDs = new ArrayList<>();
         for (Object k : chatIdsProperties.keySet()) {
             String tgChatId = chatIdsProperties.getProperty(k.toString());
-            CHAT_IDs.add(Long.parseLong(tgChatId));
+            CHAT_IDs.add(tgChatId);
         }
     }
 }

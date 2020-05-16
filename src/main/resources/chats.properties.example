@@ -1,3 +1,9 @@
 # Map to synchronised chats
 # Discord chat ID : Telegram chat ID
 discord_chat_id=telegram_chat_id
+
+# One way synchronisation
+# Discord -> Telegram
+\!discord_chat_id=telegram_chat_id
+# Telegram <- Discord
+discord_chat_id=\!telegram_chat_id

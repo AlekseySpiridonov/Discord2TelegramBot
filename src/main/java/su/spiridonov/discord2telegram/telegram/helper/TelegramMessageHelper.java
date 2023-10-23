@@ -19,9 +19,7 @@ public class TelegramMessageHelper extends TelegramBotConfig {
     }
 
     public void sendMessage(Long tgChatId, String dsMsg) {
-        SendMessage message = new SendMessage()
-                .setChatId(tgChatId)
-                .setText(dsMsg);
+        SendMessage message = new SendMessage(Long.toString(tgChatId), dsMsg);
         try {
             execute(message);
         } catch (TelegramApiException e) {

@@ -1,7 +1,7 @@
 package su.spiridonov.discord2telegram.discord;
 
 import discord4j.core.DiscordClient;
-import discord4j.core.DiscordClientBuilder;
+import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
@@ -11,7 +11,7 @@ import su.spiridonov.discord2telegram.discord.helper.DiscordMessageHelper;
 
 public class DiscordBot {
 
-    static DiscordClient client = null;
+    static DiscordClient client;
     static String botName;
     static String botDiscriminator;
 
@@ -19,8 +19,11 @@ public class DiscordBot {
 
     public static void startBot() {
         DiscordBotConfig discordBotConfig = DiscordBotConfig.getDiscordConfig();
-        client = DiscordClientBuilder.create(discordBotConfig.getTOKEN()).build();
-        client.getEventDispatcher().on(ReadyEvent.class)
+
+        client = DiscordClient.create(discordBotConfig.getTOKEN());
+        GatewayDiscordClient gateway = client.login().block();
+
+        gateway.getEventDispatcher().on(ReadyEvent.class)
                 .subscribe(ready -> {
                             botName = ready.getSelf().getUsername();
                             botDiscriminator = ready.getSelf().getDiscriminator();
@@ -28,14 +31,14 @@ public class DiscordBot {
                         }
                 );
 
-        client.getEventDispatcher().on(MessageCreateEvent.class)
+        gateway.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     Message message = event.getMessage();
                     if (!isItMyMessage(message))
                         DiscordMessageHelper.onUpdateReceived(message);
                 });
 
-        client.login().block();
+        gateway.onDisconnect().block();;
     }
 
     public static DiscordClient getClient() {

@@ -2,8 +2,7 @@ package su.spiridonov.discord2telegram.discord.helper;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.TextChannel;
-import discord4j.core.object.util.Snowflake;
+import discord4j.common.util.Snowflake;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import su.spiridonov.discord2telegram.placeholders.MessagePlaceHolders;
 import su.spiridonov.discord2telegram.BotRunner;
@@ -14,8 +13,7 @@ public class DiscordMessageHelper {
 
     private static void sendMessage(DiscordClient client, Long dsChatId, String msg) {
         Snowflake discordChat = Snowflake.of(dsChatId);
-        TextChannel channel = (TextChannel) client.getChannelById(discordChat).block();
-        channel.createMessage(msg).subscribe();
+        client.getChannelById(discordChat).createMessage(msg).block();
     }
 
     public static void sendMessage(Update tgMsg, Long dsChatId) {
@@ -32,7 +30,7 @@ public class DiscordMessageHelper {
         String tgChatId = BotRunner.findTelegramChatByDiscordId(message.getChannelId().asLong());
         if (tgChatId != null || !tgChatId.contains("!"))
             t.sendMessage(Long.valueOf(tgChatId), MessagePlaceHolders.FROM_DISCORD_PREFIX +
-                    message.getAuthor().get().getUsername() + ": " + message.getContent().get());
+                    message.getAuthor().get().getUsername() + ": " + message.getContent());
     }
 
 }

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>su.spiridonov</groupId>
-    <artifactId>Discord2TelegramBot</artifactId>
+    <artifactId>discord2telegrambot</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

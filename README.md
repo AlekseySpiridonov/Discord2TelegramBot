@@ -34,12 +34,12 @@ Telegram chat
 1. Create config files by example: `src/main/resources/system.properties.example` and `src/main/resources/chats.properties.example`.  
 2. Run Java application by command:
 ```
-java -Dconfig=$PATH$/system.properties -jar $PATH$/Discord2TelegramBot-*-jar-with-dependencies.jar
+mvn -B package --file pom.xml && java -Dconfig=$PATH$/system.properties -jar $PATH$/discord2telegrambot-*-jar-with-dependencies.jar
 ```
    OR  
    Run Docker image:  
 ```
-docker run -d --restart=always --net=host -e CONFIG=/data/$CONFIG_FILE_NAME$ -v $PATH_FOR_CONFIG_DIRECTORY$:/data/ --name discord2telegrambot docker.pkg.github.com/alekseyspiridonov/discord2telegrambot/d2t-bot
+docker run -d --restart=always --net=host -e CONFIG=/data/$CONFIG_FILE_NAME$ -v $PATH_FOR_CONFIG_DIRECTORY$:/data/ --name discord2telegrambot ghcr.io/alekseyspiridonov/discord2telegrambot/d2t-bot
 ```
 
 ## Known issues \limitations

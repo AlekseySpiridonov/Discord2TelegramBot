@@ -45,6 +45,10 @@ public class BotRunner {
 
 
         String pathToBaseWithChats = properties.getProperty("chats_for_sync");
+        if (pathToBaseWithChats == null) {
+            logger.warn("Chats for sync have been overridden via -Dchats_for_sync parameter!");
+            pathToBaseWithChats = System.getProperty("chats_for_sync");
+        }
         properties = new Properties();
         properties.load(new FileInputStream(pathToBaseWithChats));
         chatsForSynchronisation = properties;

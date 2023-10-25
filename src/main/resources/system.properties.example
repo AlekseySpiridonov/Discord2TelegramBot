@@ -8,4 +8,5 @@ discord_token=""
 # Moved to separate file
 #discord_chatId=""
 # Setup chats for synchronisation
+# Chats also can be setup via -Dchats_for_sync=<path_for_file>
 chats_for_sync=src/main/resources/chats.properties.example

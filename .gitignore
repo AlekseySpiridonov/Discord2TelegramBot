@@ -3,5 +3,8 @@
 target/*
 .DS_Store
 *.jar
-src/main/resources/system.properties
-src/main/resources/chats.properties
+src/main/resources/*.properties
+terraform-do/.terraform/*
+terraform-do/terraform.*
+terraform-do/.terraform.*
+terraform-do/*.properties

@@ -31,18 +31,24 @@ Telegram chat
 ![t2d](https://github.com/AlekseySpiridonov/Discord2TelegramBot/blob/assets/images/t2d.png?raw=true)  
 
 ## How to start bot?
+
+### 1st way (JAR file)
 1. Create config files by example: `src/main/resources/system.properties.example` and `src/main/resources/chats.properties.example`.  
 2. Run Java application by command:
 ```
 mvn -B package --file pom.xml && java -Dconfig=$PATH$/system.properties -jar $PATH$/discord2telegrambot-*-jar-with-dependencies.jar
 ```
-   OR  
-   Run Docker image:  
+
+### 2nd way (Docker Image) 
 ```
 docker run -d --restart=always --net=host -e CONFIG=/data/$CONFIG_FILE_NAME$ -v $PATH_FOR_CONFIG_DIRECTORY$:/data/ --name discord2telegrambot ghcr.io/alekseyspiridonov/discord2telegrambot/d2t-bot
 ```
 
-## Known issues \limitations
-Supports ONLY text messages.  
-Values of chat IDs MUST be unique. You can sync only ONE Discord chat with ONE Telegram chat.  
-Can't ignore some messages (for example messages from another bots).  
+### 3rd way (Terraform in DigitalOcean)
+You can use Terraform deployment to DigitalOcean Droplet.  
+More in [TF-README](terraform-do/TF-README.md) document.  
+
+## Known issues\ limitations
+- Supports ONLY text messages.  
+- Values of chat IDs MUST be unique. You can sync only ONE Discord chat with ONE Telegram chat.  
+- Can't ignore some messages (for example messages from another bots).  

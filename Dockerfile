@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM openjdk:21-slim-bullseye
 COPY target/discord2telegrambot-*-jar-with-dependencies.jar /tmp/Discord2TelegramBot.jar
 COPY tools/start-bot.sh /tmp/start.sh
 WORKDIR /tmp/

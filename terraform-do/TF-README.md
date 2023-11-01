@@ -5,8 +5,9 @@
 1. Create **API token** in **DigitalOcean Console** https://cloud.digitalocean.com/account/api/tokens  
 2. Create **SSH key** in your DigitalOcean Team Console
 3. Create valid `chats.properties` and `system.properties` from example config files and put it in this folder
-4. Export **DigitalOcean API token** by command `export DO_PAT="<YOUR_TOKEN>"` 
-5. Run Terraform Plan **and validate changes** by command 
+4. Export **DigitalOcean API token** by command `export DO_PAT="<YOUR_TOKEN>"`
+5. Run `terraform init` command
+6. Run Terraform Plan **and validate changes** by command 
 ```
 terraform plan \
 -var "do_ssh_key_name=<ssh_key_name_from_step_2>" \

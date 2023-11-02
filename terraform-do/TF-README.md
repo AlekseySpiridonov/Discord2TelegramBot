@@ -16,7 +16,7 @@ terraform plan \
 -var "bot_config=system.properties" \
 -var "bot_chats_config=chats.properties"
 ```
-6. **Apply Terraform changes** by command 
+7. **Apply Terraform changes** by command 
 ```
 terraform apply \
 -var "do_ssh_key_name=<ssh_key_name_from_step_2>" \
@@ -25,7 +25,7 @@ terraform apply \
 -var "bot_config=system.properties" \
 -var "bot_chats_config=chats.properties"
 ```
-7. SSH to your host **and validate** Bot  by command `docker logs d2tbot`
+8. SSH to your host **and validate** Bot  by command `docker logs d2tbot`
 
 ### FAQ
 #### Why is it deploying Docker Image for DigitalOcean Droplet? Not the DigitalOcean App Platform? Why do you use Docker Image instead of single JAR file?

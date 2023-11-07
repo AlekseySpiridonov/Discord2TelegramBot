@@ -33,9 +33,8 @@ resource "digitalocean_droplet" "d2t-bot" {
       "export BOT_CONFIG=/data/system.properties && export BOT_CHATS_CONFIG=/data/chats.properties",
       "export BOT_DOCKER_IMAGE=ghcr.io/alekseyspiridonov/discord2telegrambot/d2t-bot",
       "docker run -d --restart=always --net=host -e CONFIG=$BOT_CONFIG -e CHATS_FOR_SYNC=$BOT_CHATS_CONFIG -v /root/:/data/ --name d2tbot $BOT_DOCKER_IMAGE",
-      "sleep 60",
-      "docker logs d2tbot",
-      "curl 2ip.me"
+      "sleep 30",
+      "docker logs d2tbot"
     ]
   }
 }
